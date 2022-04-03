@@ -5,3 +5,7 @@ src.egg-info/PKG-INFO
 src.egg-info/SOURCES.txt
 src.egg-info/dependency_links.txt
 src.egg-info/top_level.txt
+src.egg-info/.ipynb_checkpoints/PKG-INFO-checkpoint
+src.egg-info/.ipynb_checkpoints/SOURCES-checkpoint.txt
+src.egg-info/.ipynb_checkpoints/dependency_links-checkpoint.txt
+src.egg-info/.ipynb_checkpoints/top_level-checkpoint.txt
