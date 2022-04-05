@@ -29,3 +29,5 @@ with oc.project('ml-workshop'), oc.timeout(10*60):
         template_data = {"experiment_id": "e001", "model_name": "fm-python-client"}
         applied_template = Template(open("SeldonDeploy.yaml").read())
         print(applied_template.render(template_data))
+
+

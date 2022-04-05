@@ -59,7 +59,7 @@ with oc.api_server(server):
 
             #seldon_deploy = oc.selector(f"SeldonDeployment/{build_name}").count_existing()
             #experiment_id = mlflow.get_run(run_id).info.experiment_id
-            
+
             template_data = {"experiment_id": run_id, "model_name": model_name, "image_name": build_name, "project": project}
             applied_template = Template(open("SeldonDeploy.yaml").read())
             print(applied_template.render(template_data))
