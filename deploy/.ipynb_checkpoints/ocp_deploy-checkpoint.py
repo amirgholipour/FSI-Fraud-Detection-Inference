@@ -4,24 +4,16 @@ import openshift as oc
 from jinja2 import Template
 import time
 import shutil
-run_id = "5"
-project = "redhat-ods-applications"
+run_id = "6"
+project = "fmv2"
 
 os.environ['OPENSHIFT_CLIENT_PYTHON_DEFAULT_OC_PATH'] = '/tmp/oc'
 
 
 model_name = 'sademo'
-model_version = "1"# os.environ["MODEL_VERSION"]
+model_version = "6"# os.environ["MODEL_VERSION"]
 build_name = f"seldon-model-{model_name}-v{model_version}"
-def download_artifacts():
-    print("Retrieving model metadata ...")
-    #shutil.copy("../../models", "", *, follow_symlinks=True)
-    print("Download successful")
-    
-    return run_id
-    
-        
-run_id = download_artifacts()
+
 
 print("Start OCP things...")
 #print('OpenShift server version: {}'.format(oc.get_server_version()))
@@ -59,7 +51,7 @@ with oc.api_server(server):
 
             #seldon_deploy = oc.selector(f"SeldonDeployment/{build_name}").count_existing()
             #experiment_id = mlflow.get_run(run_id).info.experiment_id
-
+            
             template_data = {"experiment_id": run_id, "model_name": model_name, "image_name": build_name, "project": project}
             applied_template = Template(open("SeldonDeploy.yaml").read())
             print(applied_template.render(template_data))

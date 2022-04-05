@@ -6,7 +6,7 @@ print('OpenShift server version: {}'.format(oc.get_server_version()))
 
 build_name = "fm-python-client"
 
-with oc.project('ml-workshop'), oc.timeout(10*60):
+with oc.project('fmv2'), oc.timeout(10*60):
     build_config = oc.selector(f"bc/{build_name}").count_existing() #.object
 
     print(build_config)

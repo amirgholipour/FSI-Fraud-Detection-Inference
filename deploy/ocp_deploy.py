@@ -4,24 +4,16 @@ import openshift as oc
 from jinja2 import Template
 import time
 import shutil
-run_id = "5"
-project = "redhat-ods-applications"
+run_id = "6"
+project = "fmv2"
 
 os.environ['OPENSHIFT_CLIENT_PYTHON_DEFAULT_OC_PATH'] = '/tmp/oc'
 
 
 model_name = 'sademo'
-model_version = "1"# os.environ["MODEL_VERSION"]
+model_version = "6"# os.environ["MODEL_VERSION"]
 build_name = f"seldon-model-{model_name}-v{model_version}"
-def download_artifacts():
-    print("Retrieving model metadata ...")
-    #shutil.copy("../../models", "", *, follow_symlinks=True)
-    print("Download successful")
-    
-    return run_id
-    
-        
-run_id = download_artifacts()
+
 
 print("Start OCP things...")
 #print('OpenShift server version: {}'.format(oc.get_server_version()))
