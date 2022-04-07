@@ -4,21 +4,24 @@ import openshift as oc
 from jinja2 import Template
 import time
 import shutil
-run_id = "6"
-project = "fmv2"
+run_id = "3"
+project = "fmv3"
 
 os.environ['OPENSHIFT_CLIENT_PYTHON_DEFAULT_OC_PATH'] = '/tmp/oc'
 
 
 model_name = 'sademo'
-model_version = "6"# os.environ["MODEL_VERSION"]
+model_version = "1"# os.environ["MODEL_VERSION"]
 build_name = f"seldon-model-{model_name}-v{model_version}"
 
 
 print("Start OCP things...")
 #print('OpenShift server version: {}'.format(oc.get_server_version()))
-token = os.environ["OPENSHIFT_LOGIN_TOKEN"]
-server = os.environ["OPENSHIFT_LOGIN_SERVER"]
+# token = os.environ["OPENSHIFT_LOGIN_TOKEN"]
+# server = os.environ["OPENSHIFT_LOGIN_SERVER"]
+
+token = 'sha256~MTCXecqgyCXdTaQp6IIdHbMHreK8pZRB0MeTnKjhSfc'
+server = 'https://api.dbs-indo-1.apac-1.rht-labs.com:6443'
 # print(token)
 # print(server)
 
