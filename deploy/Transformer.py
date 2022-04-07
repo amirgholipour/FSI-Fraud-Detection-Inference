@@ -12,9 +12,19 @@ class Transformer(object):
         print('*'*50)
         print('*'*50)
         print('*'*50)
-        print(X['data']['ndarray'])
+        #print(X['data']['ndarray'])
+        print(feature_names)
+        print(X.to_numpy())
+        
+        X = pd.DataFrame(X, columns=feature_names)
+        transformed_data = self.scaler.transform(X)
+        
 
-        transformed_data = self.scaler.transform(X['data']['ndarray'])
 
+        
+        #transformed_data = self.scaler.transform(X['data']['ndarray'])
+        
+#         transformed_data = self.scaler.transform(X)
+        print('finished transformation')
         # print(df.to_numpy())
-        return transformed_data
+        return transformed_data.to_numpy()

@@ -17,8 +17,8 @@ build_name = f"seldon-model-{model_name}-v{model_version}"
 
 print("Start OCP things...")
 #print('OpenShift server version: {}'.format(oc.get_server_version()))
-token = os.environ["OPENSHIFT_LOGIN_TOKEN"]
-server = os.environ["OPENSHIFT_LOGIN_SERVER"]
+token = os.environ["OPENSHIFT_API_LOGIN_TOKEN"]
+server = os.environ["OPENSHIFT_API_LOGIN_SERVER"]
 # print(token)
 # print(server)
 

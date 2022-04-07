@@ -7,6 +7,7 @@ RUN pip install seldon-core
 RUN pip install joblib
 RUN pip install scikit-learn
 RUN pip install tensorflow
+RUN pip install pandas
 #RUN pip install dill
 
 COPY Predictor.py  Transformer.py finalized_dl_model.h5 finalized_ml_model.sav scaler.pkl /microservice/
