@@ -5,7 +5,7 @@ from jinja2 import Template
 import time
 import shutil
 run_id = "6"
-project = "fmv3"
+project = "fmv2"
 
 os.environ['OPENSHIFT_CLIENT_PYTHON_DEFAULT_OC_PATH'] = '/tmp/oc'
 
@@ -17,10 +17,8 @@ build_name = f"seldon-model-{model_name}-v{model_version}"
 
 print("Start OCP things...")
 #print('OpenShift server version: {}'.format(oc.get_server_version()))
-token = os.environ["OPENSHIFT_API_LOGIN_TOKEN"]
-server = os.environ["OPENSHIFT_API_LOGIN_SERVER"]
-server = 'https://api.dbs-indo-1.apac-1.rht-labs.com:6443'
-token = 'sha256~Oi35jKsmKI722GvQds2IDG-2-6vDF8WBaAsvl08bnpA'
+token = os.environ["OPENSHIFT_LOGIN_TOKEN"]
+server = os.environ["OPENSHIFT_LOGIN_SERVER"]
 # print(token)
 # print(server)
 
