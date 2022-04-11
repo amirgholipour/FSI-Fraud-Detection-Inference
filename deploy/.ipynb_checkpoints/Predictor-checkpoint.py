@@ -6,37 +6,41 @@ import traceback
 import sys
 import os
 
-
-
 class Predictor(object):
-
-    def __init__(self,loaded = False):
-        self.loaded = loaded
-        if self.loaded == True:
-            self.model = joblib.load('finalized_ml_model.sav')
+    def __init__(self):
         self.class_names = ['None Fraud', 'Fraud']
-    def load(self):
+    def load(self,dl_model = True):
         print("Loading model",os.getpid())
-        self.model = tf.keras.models.load_model('finalized_dl_model.h5', compile=False)
+        self.dl_model = dl_model
+        if self.dl_model == False:
+            self.model = joblib.load('finalized_ml_model.sav')
+            print(" Loaded ML model")
+        else:
+            self.model = tf.keras.models.load_model('finalized_dl_model.h5', compile=False)
+            print(" Loaded DL model")
         self.loaded = True
+        
         print("Loaded model")
-
-        
-        
-    def predict(self, X,features_names=None):
+    def predict(self, X,features_names=None, meta=None):
 
         try:
             print ('Step1:  Perform prediction!!!')
-            if not self.loaded:
-                print ('Loading DL model!!!!')
+            if self.dl_model:
+                print ('Loaded DL model!!!!')
                 self.load()
                 pred_prob = self.model.predict(X)
                 predicted_class=int(np.round(pred_prob))
             else:
-                print("Loading ML model!!!!  ")
-                predicted_class = int(self.model.predict(X))
+                print("Loaded ML model!!!!  ")
                 
-                pred_prob = self.model.predict_proba(X)#[:, 1]
+                predicted_class = int(self.model.predict(X))
+                print(predicted_class)
+                try:
+                    pred_prob = self.model.predict_proba(X)#[:, 1]
+                    print(pred_prob)
+                except Exception as e:
+                    print(traceback.format_exception(*sys.exc_info()))
+                    raise # reraises the exception
             print ('Step1 finished!!!!')
 
         
@@ -44,8 +48,8 @@ class Predictor(object):
             pred_label = self.class_names[predicted_class]
             print('Predicted Class name: ', pred_label)
 
-            json_results = {"Predicted value": json.dumps(predicted_class, cls=JsonSerializer) ,"Predicted Class Label": pred_label,"Predicted Class Probability": pred_prob.tolist()}
-
+            # json_results = {"Predicted value": json.dumps(predicted_class, cls=JsonSerializer) ,"Predicted Class Label": pred_label,"Predicted Class Probability": pred_prob.tolist()}
+            json_results = {"Predicted value": json.dumps(predicted_class, cls=JsonSerializer) ,"Predicted Class Label": pred_label}
         
         ######
         except Exception as e:
@@ -54,8 +58,6 @@ class Predictor(object):
                 
         
         return json.dumps(json_results)    
-
-
 
 class JsonSerializer(json.JSONEncoder):
     def default(self, obj):

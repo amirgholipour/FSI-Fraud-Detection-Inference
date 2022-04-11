@@ -6,12 +6,8 @@ import traceback
 import sys
 import os
 
-
-
 class Predictor(object):
-
     def __init__(self):
-        
         self.class_names = ['None Fraud', 'Fraud']
     def load(self,dl_model = True):
         print("Loading model",os.getpid())
@@ -25,9 +21,6 @@ class Predictor(object):
         self.loaded = True
         
         print("Loaded model")
-
-        
-        
     def predict(self, X,features_names=None, meta=None):
 
         try:
@@ -65,8 +58,6 @@ class Predictor(object):
                 
         
         return json.dumps(json_results)    
-
-
 
 class JsonSerializer(json.JSONEncoder):
     def default(self, obj):
