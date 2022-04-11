@@ -5,8 +5,8 @@ COPY requirements.txt /microservice/
 RUN pip install -r requirements.txt
 RUN pip install seldon-core
 RUN pip install joblib
-# RUN pip install scikit-learn
-# RUN pip install tensorflow
+RUN pip install scikit-learn
+RUN pip install tensorflow
 RUN pip install pandas
 
 COPY Predictor.py  Transformer.py finalized_dl_model.h5 finalized_ml_model.sav scaler.pkl /microservice/
