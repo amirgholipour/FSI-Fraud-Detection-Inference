@@ -1,4 +1,3 @@
-# %pip install openshift-client
 import os
 os.system('pip install openshift-client' )
 
@@ -27,8 +26,7 @@ token = os.environ["OPENSHIFT_API_LOGIN_TOKEN"]
 server = os.environ["OPENSHIFT_API_LOGIN_SERVER"]
 # server = 'https://api.dbs-indo-1.apac-1.rht-labs.com:6443'
 # token = 'sha256~Oi35jKsmKI722GvQds2IDG-2-6vDF8WBaAsvl08bnpA'
-# print(token)
-# print(server)
+
 
 
 
