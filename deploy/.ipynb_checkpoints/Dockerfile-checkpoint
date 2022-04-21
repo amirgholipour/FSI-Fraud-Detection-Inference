@@ -9,7 +9,7 @@ RUN pip install scikit-learn
 RUN pip install tensorflow
 RUN pip install pandas
 
-COPY Predictor.py  Transformer.py ../models/finalized_dl_model.h5 ../models/finalized_ml_model.sav ../models/scaler.pkl /microservice/
+COPY Predictor.py  Transformer.py finalized_dl_model.h5 finalized_ml_model.sav scaler.pkl /microservice/
 
 ENV PERSISTENCE 0
 CMD seldon-core-microservice $MODEL_NAME --service-type $SERVICE_TYPE --persistence $PERSISTENCE --grpc-port ${GRPC_PORT} --metrics-port ${METRICS_PORT} --http-port ${HTTP_PORT}
